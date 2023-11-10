@@ -64,13 +64,21 @@ public class E704 {
         return -1;
     }
 
+
+    /**
+     * 3 二分查找平衡版
+     *
+     * @param nums
+     * @param target
+     * @return
+     */
     public int search(int[] nums, int target) {
         int i = 0;
-        int j = nums.length;
+        int j = nums.length; //边界区域
         int half;
-        while (1 < j - i) {
+        while (1 < j - i) {// j-i代表待查找元素
             half = (i + j) >>> 1;
-            if ( target < nums[half] ) {
+            if (target < nums[half]) {
                 j = half;
             } else {
                 i = half;
@@ -79,9 +87,37 @@ public class E704 {
         return (nums[i] == target) ? i : -1;
     }
 
+    /**
+     * 4 java版的二分查找
+     * @param a
+     * @param fromIndex
+     * @param toIndex
+     * @param key
+     * @return
+     */
+    public static int binarySearch0(long[] a, int fromIndex, int toIndex, long key) {
+        int i = fromIndex;
+        int j = toIndex;
+        while (i <= j) {
+            int mid = (i + j) >>> 1;
+            long midval = a[mid];
+
+            if (midval < key) {
+                i = mid + 1;
+            } else if (midval > key) {
+                j = mid - 1;
+            } else {
+                return mid;
+            }
+        }
+        return -(i + 1);
+    }
+
+
+
     public static void main(String[] args) {
         int[] nums = new int[]{-1, 0, 3, 5, 9, 12};
-        System.out.println(new E704().search(nums, 5));
+        System.out.println(new E704().search2(nums, -1));
     }
 
 }
