@@ -12,6 +12,7 @@ public class E48 {
     /**
      * 1.使用辅助数组 <br/>
      * 构造新数组，将旧行赋值给新列
+     *
      * @param matrix
      */
     public void rotate1(int[][] matrix) {
@@ -29,52 +30,26 @@ public class E48 {
         }
     }
 
+    /**
+     * 2.旋转图像
+     *
+     * @param matrix 矩阵
+     */
     public static void rotate(int[][] matrix) {
-        int [] row = new int[matrix.length];
-        int [] col = new int[matrix.length];
-        for (int i = 0; i < 4; i++) {
-
-            if (i%4==0){
-                for (int j = matrix.length -1 ;j >= 0 ; j--) {
-                    col[j] = matrix[j][matrix.length-1];
-                    matrix[j][matrix.length-1] = matrix[0][j];
-                }
-                /*for (int j = 0; j < matrix.length; j++) {
-
-                    col[j] = matrix[j][matrix.length - 1];
-                    matrix[j][matrix.length - 1] =  matrix[0][j];
-                }*/
+        int n = matrix.length;
+        for (int i = 0; i < n / 2; i++) {
+            for (int j = 0; j < (n + 1) / 2; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[n - 1 - j][i];
+                matrix[n - 1 - j][i] = matrix[n - 1 - i][n - 1 - j];
+                matrix[n - 1 - i][n - 1 - j] = matrix[j][n - 1 - i];
+                matrix[j][n - 1 - i] = temp;
             }
-            if (i%4==1){
-                for (int j = matrix.length -1 ;j >= 0 ; j--) {
-                    row[j] = matrix[matrix.length-1][matrix.length -1 - j];
-                    matrix[matrix.length-1][matrix.length -1 - j] = col[matrix.length -1 - j];
-                }
-            }
-
-
-           /* //第一次
-            for (int j = 0; j < matrix.length; j++) {
-                row[j] = matrix[i][j];
-            }
-            for (int j = matrix.length - 1; j > 0; j--) {
-                col[matrix.length - 1 - j] = matrix[j][matrix.length -1];
-            }
-            for (int j = 0; j < matrix.length; j++) {
-                matrix[j][matrix.length - 1] = row[j];
-            }
-            //第二次
-            for (int j = 0; j < matrix.length; j++) {
-                row[j] = matrix[matrix.length - 1][j];
-            }
-            for (int j = 0; j < matrix.length; j++) {
-                matrix[matrix.length - 1][j] = col[j];
-            }*/
         }
     }
 
     public static void main(String[] args) {
-        int arrays[][] = {{1,2},{3,4}};
+        int arrays[][] = {{1, 2}, {3, 4}};
         rotate(arrays);
         System.out.println(Arrays.deepToString(arrays));
     }
