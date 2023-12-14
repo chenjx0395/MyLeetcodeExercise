@@ -13,12 +13,14 @@ import java.util.Arrays;
 public class E34 {
 
 
-    public int[] searchRange(int[] nums, int target) {
-        if (nums.length == 0) {// 数组为空的情况
+    public int[] searchRange1(int[] nums, int target) {
+        // 数组为空的情况
+        if (nums.length == 0) {
             return new int[]{-1, -1};
         }
         int i = 0, j = nums.length;
-        int start = -1, end = -1; //结果值
+        //结果值
+        int start = -1, end = -1;
         while (i < j) {
             int m = (i + j) >>> 1;
             int mv = nums[m];
@@ -46,6 +48,40 @@ public class E34 {
             }
         }
         return new int[]{start, end};
+    }
+
+    public int[] searchRange(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+        int start = -1,end = -1;
+        while (left <= right){
+            int mid = left + ((right - left) >> 1);
+            if (nums[mid] == target){
+                start = end = mid;
+                break;
+            }else if(nums[mid] > target){
+                right = mid -1;
+            }else{
+                left = mid + 1;
+            }
+        }
+        if (start == -1){
+            return new int[]{-1,-1};
+        }
+        for (int i = start - 1; i >= 0; i--) {
+            if (nums[i] == target){
+                start = i;
+            }else {
+                break;
+            }
+        }
+        for (int i = end + 1; i < nums.length; i++) {
+            if (nums[i] == target){
+                end = i;
+            }else {
+                break;
+            }
+        }
+        return new int[]{start,end};
     }
 
 
