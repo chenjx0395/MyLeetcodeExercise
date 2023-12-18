@@ -1,5 +1,7 @@
 package com.cjx.array;
 
+import java.util.Arrays;
+
 /**
  * @Description27. 移除元素  简单
  * 给你一个数组 nums 和一个值 val，你需要 原地 移除所有数值等于 val 的元素，并返回移除后数组的新长度。
@@ -27,7 +29,7 @@ package com.cjx.array;
  **/
 public class E27 {
 
-    public static int removeElement(int[] nums, int val) {
+    public static int removeElement1(int[] nums, int val) {
         if (nums == null || nums.length == 0 || nums[0] == val && nums.length ==1){
             return 0;
         }
@@ -39,7 +41,8 @@ public class E27 {
         while (head < tail){
             if (nums[head] == val && nums[tail] != val){
                 nums[head++] = nums[tail--];
-                if (head == tail && nums[head] == val){ //如果是奇数数组，那但tail==head时，要对最后一个元素进行判断
+                //如果是奇数数组，那但tail==head时，要对最后一个元素进行判断
+                if (head == tail && nums[head] == val){
                     count--;
                 }
                 count--;
@@ -63,11 +66,25 @@ public class E27 {
         return count;
     }
 
-    public static void main(String[] args) {
-        int [] nums = new int[]{3,3};
-        for (int i = 0; i < removeElement(nums, 3); i++) {
-            System.out.println(nums[i]);
+    public static int removeElement(int[] nums, int val) {
+        int n = nums.length;
+        int left = 0;
+        for (int right = 0; right < n; right++) {
+            if (nums[right] != val) {
+                nums[left] = nums[right];
+                left++;
+            }
         }
+        return left;
+    }
+
+    public static void main(String[] args) {
+        int [] nums = new int[]{0,1,2,2,3,0,4,2};
+        System.out.println(removeElement(nums,3));
+        removeElement(nums,2);
+        /*for (int i = 0; i < removeElement(nums, 3); i++) {
+            System.out.println(nums[i]);
+        }*/
     }
 
 }
