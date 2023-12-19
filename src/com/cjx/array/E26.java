@@ -7,26 +7,21 @@ package com.cjx.array;
  **/
 public class E26 {
 
-    public int removeDuplicates(int[] nums) {
-        if (nums.length == 0){
-            return 0;
-        }
-        if (nums.length == 1){
-            return 1;
-        }
-        int left = 0 , result = nums.length ;
-        for (int right = 1; right < nums.length; right++) {
-            if (nums[right] == nums[left]){
-                left++;
-                result--;
+    public static int removeDuplicates(int[] nums) {
+
+        int left = 0 ,right = 0, result = 1 ;
+        while (right < nums.length){
+            if (nums[right] != nums[left]){
+                nums[++left] = nums[right];
+                result++;
             }
-            nums[left] = nums[right];
+            right++;
         }
         return result;
     }
 
     public static void main(String[] args) {
-
+        removeDuplicates(new int[]{1,1,2});
     }
 
 }
