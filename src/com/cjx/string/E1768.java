@@ -1,7 +1,6 @@
 package com.cjx.string;
 
 
-
 /**
  * @Description 交替合并字符串 【简单】
  * @Author cjx
@@ -16,7 +15,7 @@ public class E1768 {
         int p1 = 0, p2 = 0;
         for (int i = 0; i < s1.length + s2.length; i++) {
             //出现一个数组到头的情况，代表新字符串已构建完成
-            if (p1 == s1.length && p2 == s2.length){
+            if (p1 == s1.length && p2 == s2.length) {
                 break;
             }
             //奇数让s1添加入新字符串
@@ -49,7 +48,7 @@ public class E1768 {
     }
 
     public static void main(String[] args) {
-        System.out.println(mergeAlternately("abc","cba"));
+        System.out.println(mergeAlternately("abc", "cba"));
     }
 
 }
