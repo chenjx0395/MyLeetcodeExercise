@@ -1,6 +1,5 @@
 package com.cjx.array;
 
-import java.util.Arrays;
 
 /**
  * @Description 844. 比较含退格的字符串 【简单】
@@ -9,7 +8,7 @@ import java.util.Arrays;
  **/
 public class E844 {
 
-    private static final char BACKSPACE = '#';
+
 
     public static boolean backspaceCompare(String S, String T) {
         int i = S.length() - 1, j = T.length() - 1;
@@ -53,13 +52,7 @@ public class E844 {
         return true;
     }
 
-    /*private static int checkBackspace(int p , char[] nums,int temp){
-        if (nums[p] != BACKSPACE || nums[p-1] != BACKSPACE){
-            p -= temp;
-            return p;
-        }
-        return checkBackspace(--p,nums,++temp);
-    }*/
+
 
     public static void main(String[] args) {
         System.out.println(backspaceCompare("ab##", "c#d#"));
