@@ -1,4 +1,4 @@
-package com.cjx.array;
+package com.cjx.prefixAnd;
 
 import java.util.Arrays;
 
@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class E724 {
 
 
-    public static int findMiddleIndex(int[] nums) {
+    public static int findMiddleIndexOld(int[] nums) {
 
         int sum = Arrays.stream(nums).sum();
         int countLeft = 0;
@@ -31,9 +31,25 @@ public class E724 {
 
     }
 
+    public int pivotIndex(int[] nums) {
+        int length = nums.length;
+        int sum = 0;
+        for (int num : nums) {
+            sum += num;
+        }
+        int preSum = 0;
+        for (int i = 0; i < length; i++) {
+            if (preSum*2 + nums[i] == sum ){
+                return i;
+            }
+            preSum += nums[i];
+        }
+        return -1;
+    }
+
     public static void main(String[] args) {
-        int[] ints = {1, 7, 3, 6, 5, 6};
-        System.out.println(findMiddleIndex(ints));
+        int[] ints = {-1,-1,-1,-1,-1,-1};
+        System.out.println(new E724().pivotIndex(ints));
     }
 
 }
