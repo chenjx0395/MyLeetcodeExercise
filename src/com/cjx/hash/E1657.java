@@ -1,8 +1,6 @@
 package com.cjx.hash;
 
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * @Description E1657.确定两个字符串是否接近【中等】
